@@ -6,11 +6,14 @@ class Obj:
         
         self._i,self._j = i,j
     
-    def get_location(self):
-        self._x,self._y = self._i*Obj.side+35+125, self._j *Obj.side+41
-        return self._x, self._y
+    
     
     def get_position(self):
         return self._i,self._j
+    
+    def set_position(self,i,j):
+        self._i,self.j=i,j
+#     def get_name(self):
+#         return self._name
     
     

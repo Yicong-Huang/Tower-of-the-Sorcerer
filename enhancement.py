@@ -12,4 +12,6 @@ class Enhancement(Item):
             self._value=((self._floor._num-1)//10+1)*self._value
         exec('prot._'+self._kind +'+='+str(self._value))
         print(prot.__dict__)
+        if self._name=='shield5':
+            prot._magic_defense=True
         Item.interact(self,prot)

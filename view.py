@@ -1,4 +1,4 @@
-from tkinter import *
+from tkinter import Tk,Label,Frame,StringVar,W,E,S,N,LEFT,OptionMenu
 
 from PIL import ImageTk,Image
 from PIL.ImageTk import PhotoImage
@@ -10,7 +10,7 @@ from item import Item
 
 # Construct a simple root window
 root =Tk()
-root.title("Tower of the Szombieerer")
+root.title("Tower of the Sorcerer")
 root.geometry("640x400")
 
 
@@ -35,20 +35,20 @@ transmit_up_icon=ImageTk.PhotoImage(Image.open('src/item/hallow/transmit_up.png'
 transmit_down_icon=ImageTk.PhotoImage(Image.open('src/item/hallow/transmit_down.png'))
 
 
-frame = Frame(root)
+# frame = Frame(root)
 
 # Place buttons simply at the top
-frame.grid(row=1,sticky=S+W+N+E)
-controller.reset_button (frame,text="New Floor")     .pack(side=LEFT)
-controller.save_button (frame,text="Save Floor")     .pack(side=LEFT)
-controller.load_button (frame,text="Load Floor")     .pack(side=LEFT)
-
-controller.next_button (frame,text="Next Floor")     .pack(side=LEFT)
-controller.previous_button (frame,text="Previous Floor")     .pack(side=LEFT)
-
-
-variable = StringVar(root)
-variable.set("wall") # default value
-
-w = OptionMenu(root, variable, 'bat','big_bat','big_slime','blue_blood','blue_door','blue_gem','blue_key','blue_wizard','downstairs','ghost_soldier','green_slime','iron_door','knight','lava','merchant','mid_soldier','pri_witch','pro_witch','red_blood','red_door','red_gem','red_key','red_slime','red_wizard','rock','sage','skeleton','skeleton_soldier','slime_man','soldier','swords_man','upstairs','vampire_bat','wall', 'yellow_door','yellow_key','zombie','zombie_soldier')
-w.grid(row=2,columnspan=3)
+# frame.grid(row=1,sticky=S+W+N+E)
+# controller.reset_button (frame,text="New Floor")     .pack(side=LEFT)
+# controller.save_button (frame,text="Save Floor")     .pack(side=LEFT)
+# controller.load_button (frame,text="Load Floor")     .pack(side=LEFT)
+# 
+# controller.next_button (frame,text="Next Floor")     .pack(side=LEFT)
+# controller.previous_button (frame,text="Previous Floor")     .pack(side=LEFT)
+# 
+# 
+# variable = StringVar(root)
+# variable.set("wall") # default value
+# 
+# w = OptionMenu(root, variable, 'bat','big_bat','big_slime','blue_blood','blue_door','blue_gem','blue_key','blue_wizard','dark_knight','downstairs','ghost_soldier','green_slime','iron_door','knight','lava','magic_guard','merchant','mid_soldier','pri_witch','pro_soldier','pro_witch','red_blood','red_door','red_gem','red_key','red_slime','red_wizard','rock','sage','skeleton','skeleton_soldier','slime_king','slime_man','soldier','swords_man','upstairs','vampire_bat','wall', 'yellow_door','yellow_key','zombie','zombie_soldier')
+# w.grid(row=2,columnspan=3)

@@ -1,4 +1,4 @@
-import controller, sys,view,model, ele_lib 
+import controller, view, ele_lib 
 
 from floor import Floor
 from tower import Tower
@@ -17,39 +17,47 @@ def world():
     return (controller.the_canvas.winfo_width(),controller.the_canvas.winfo_height())
 
 #reset all module variables to represent an empty/stopped simulation
-def reset ():
-    global F
-    controller.the_canvas.delete('redraw')
-
-    F=Floor(1)
+# def reset ():
+#     global F
+#     controller.the_canvas.delete('redraw')
+#     F=Floor(1)
+#     
+# 
+# #start running the simulation
+# def save ():
+#     F.save_floor()
+def save():
+    T.save_tower(prot)
     
-
-#start running the simulation
-def save ():
-    F.save_floor()
-    
+     
 def load():
-    global T,F
-    T=Tower.load_floor('floor.flo')
+    global T,F,prot,main
+
+    for hallow in prot._hallows:
+        controller.the_canvas.delete(hallow)
+    T,prot=Tower.load_tower('game1.sav')
+    
     F=T.current_floor()
-    display_all(1)
+    display_all(controller.tick)
+    
+    for hallow in prot._hallows:
+        hallow=Hallow(0,0,hallow,F)
+        ele_lib.set_image(hallow)
+        hallow.interact(prot)
+    
+    
 
     
+
+def show_info():
+    return Hallow(0,0,'info_book',None).clicked(prot,None)
+
 def next ():
     T.next_floor()
-    
+     
 def previous():
     T.previous_floor()
 
-def mouse_click(x,y):
-    global F
-    item=view.variable.get()
-    i=round((x-35-125)/32)
-    j=round((y-41)/32)
-    F.set_floor(i,j,item)
-    item=eval(type(ele_lib.lib[item]).__name__+'(i,j,item,F)')
-    item.display(controller.the_canvas,0)
-    print([f for f in F])
 
 
 def arrow_direction(direction):
@@ -58,28 +66,30 @@ def arrow_direction(direction):
 
 
 
+T,prot=Tower.load_tower('all_floors.flo')
 
-T=Tower.load_floor('all_floors.flo')
-prot=Protagonist(5,10,'protagonist',T)
 check=True
 def display_all(tick):
+
+    
+    global main,check
     main=controller.the_canvas
     floor = T.current_floor()
-    global check
-    while floor._num!=T._height and check:
-        floor=T.next_floor()
+    
+   
     check=False
 
     main.delete('redraw')
 
-    
+
     for (i,j),item in floor:
         if isinstance(item, str):
-            print(item)
             item=eval(type(ele_lib.lib[item]).__name__+'(i,j,item,floor)')
             floor.set_floor(i,j,item)
-        item.display(controller.the_canvas,tick)
-    prot.display(controller.the_canvas,tick)
+        item.display(main,tick)
+
+    prot.display(main,tick)
+    
     
     
     main.create_text(79,87,text=prot.get_value('hp'),tag='redraw')
@@ -92,5 +102,5 @@ def display_all(tick):
     main.create_text(560,175,text='       *    %s'% prot.get_value('blue_key'),tag='redraw')
     main.create_text(560,195,text='       *    %s'% prot.get_value('red_key'),tag='redraw')
    
-
+   
 
