@@ -5,6 +5,6 @@ and controller (outside game control)
 import view
 import controller
 
-controller.repeater(view.root)
+controller.repeater(view.WINDOW)
 
-view.root.mainloop()
+view.WINDOW.mainloop()

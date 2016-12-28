@@ -85,8 +85,6 @@ class Protagonist(Character):
             else:
                 Plot(temp_i,temp_j,self._floor,self._case,self)
 
-
-
     def __str__(self):
         if not self._hallows:
             hallows='set()'

@@ -6,7 +6,7 @@ from hallow import Hallow
 class Character(Display):
     def __init__(self,i,j,name,floor):
         Display.__init__(self,i,j,name,floor)
-    
+
     def interact(self,prot):
         num=self._floor._num
         if self._name=='thief':
@@ -23,7 +23,7 @@ class Character(Display):
                     self.disappear()
                     prot._tower._tower[34].del_floor(3,8)
                     prot._tower._tower[34].set_floor(4,9,'thief')
-                    
+
             elif num==15:
                 messagebox.showinfo(title='thief', message='hello')
                 self._floor.del_floor(7,0)
@@ -35,11 +35,11 @@ class Character(Display):
                 prot._tower._tower[1].set_floor(10,9,'thief')
             elif num==35:
                 messagebox.showinfo(title='thief', message='hello')
-               
 
-                
-                
-                
+
+
+
+
         elif self._name=='sage':
             if num==2:
                 prot._gold+=1000
@@ -52,7 +52,7 @@ class Character(Display):
                 prot._attack=round(prot._attack*1.03)
                 prot._defense=round(prot._defense*1.03)
                 self.disappear()
-                
+
             elif num==6 and messagebox.askyesno('merchant', 'a blue key for 50 gold?') and prot._gold>=50:
                 prot._gold-=50
                 prot._blue_key+=1
@@ -76,9 +76,9 @@ class Character(Display):
                     prot._gold-=800
                     prot._red_key+=1
                     self.disappear()
-                   
-            
-       
+
+
+
     def move(self,di=0,dj=0):
         for t in range(max(abs(di),abs(di))):
             if self._tick:
@@ -91,8 +91,5 @@ class Character(Display):
             else:
                 print('not ticking')
             self._tick=not self._tick
-            
-    def get_value(self,name):
-        return eval('self._'+name)
 
-        
+    

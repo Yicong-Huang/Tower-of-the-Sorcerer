@@ -25,14 +25,14 @@ class Hallow(Item):
         self._useable=True
     def interact(self,prot):
         Item.interact(self,prot)
-        [view.main.tag_bind(view.main.create_image(i,j,image=image,tag=self._name),'<ButtonRelease>',lambda event: Hallow.clicked(self,prot,event))
+        [view.MAIN.tag_bind(view.MAIN.create_image(i,j,image=image,tag=self._name),'<ButtonRelease>',lambda event: Hallow.clicked(self,prot,event))
           for image ,(i,j) in zip([view.transmit_up_icon,view.transmit_down_icon] if self._name=='transmit' else [ele_lib.lib[self._name].image],lib[self._name])]
         prot._hallows.add(self._name)
         if '_'+self._name in prot.__dict__:
             exec('prot._'+self._name+'=True')
         self._useable=True
         if self._name=='fly_oppo':
-            view.main.create_text(75,280,text='3')
+            view.MAIN.create_text(75,280,text='3')
         
     def clicked(self,prot,event):
         print('clicked')

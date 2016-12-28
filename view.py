@@ -1,54 +1,31 @@
-from tkinter import Tk,Label,Frame,StringVar,W,E,S,N,LEFT,OptionMenu
+'''Display the game board with Tkinter, setting frame and some image constants.'''
+from tkinter import Tk, W, E, S, N
 
-from PIL import ImageTk,Image
-from PIL.ImageTk import PhotoImage
+from PIL import ImageTk, Image
 
 # import controller to call/create widgets and position them in the view
 import controller
 
-from item import Item
+# Construct a simple WINDOW WINDOW
+WINDOW = Tk()
+WINDOW.title("Tower of the Sorcerer")
+WINDOW.geometry("640x400")
 
-# Construct a simple root window
-root =Tk()
-root.title("Tower of the Sorcerer")
-root.geometry("640x400")
+LEFT_IMAGE = ImageTk.PhotoImage(Image.open('src/frame/left.png'))
+MID_IMAGE = ImageTk.PhotoImage(Image.open('src/frame/mid.png'))
+RIGHT_IMAGE = ImageTk.PhotoImage(Image.open('src/frame/right.png'))
+MAIN = controller.board_canvas(WINDOW, width=640, height=400)
+MAIN.grid(sticky=W+E+N+S)
+MAIN.create_image(62.5, 200, image=LEFT_IMAGE, tag='init')
+MAIN.create_image(320, 200, image=MID_IMAGE, tag='init')
+MAIN.create_image(577.5, 200, image=RIGHT_IMAGE, tag='init')
+YELLOW_KEY_ICON = ImageTk.PhotoImage(Image.open('src/frame/yellow_key_icon.png'))
+BLUE_KEY_ICON = ImageTk.PhotoImage(Image.open('src/frame/blue_key_icon.png'))
+RED_KEY_ICON = ImageTk.PhotoImage(Image.open('src/frame/red_key_icon.png'))
+MAIN.create_image(540, 155, image=YELLOW_KEY_ICON)
+MAIN.create_image(540, 175, image=BLUE_KEY_ICON)
+MAIN.create_image(540, 195, image=RED_KEY_ICON)
 
+TRANSMIT_UP_ICON = ImageTk.PhotoImage(Image.open('src/item/hallow/transmit_up.png'))
 
-
-left_image=ImageTk.PhotoImage(Image.open('src/frame/left.png'))
-mid_image=ImageTk.PhotoImage(Image.open('src/frame/mid.png'))
-right_image=ImageTk.PhotoImage(Image.open('src/frame/right.png'))
-main = controller.board_canvas(root,width=640,height=400)
-main.grid(sticky=W+E+N+S)
-main.create_image(62.5,200,image=left_image,tag='init')
-main.create_image(320,200,image=mid_image,tag='init')
-main.create_image(577.5,200,image=right_image,tag='init')
-yellow_key_icon=ImageTk.PhotoImage(Image.open('src/frame/yellow_key_icon.png'))
-blue_key_icon=ImageTk.PhotoImage(Image.open('src/frame/blue_key_icon.png'))
-red_key_icon=ImageTk.PhotoImage(Image.open('src/frame/red_key_icon.png'))
-main.create_image(540,155,image=yellow_key_icon)
-main.create_image(540,175,image=blue_key_icon)
-main.create_image(540,195,image=red_key_icon)
-
-transmit_up_icon=ImageTk.PhotoImage(Image.open('src/item/hallow/transmit_up.png'))
-
-transmit_down_icon=ImageTk.PhotoImage(Image.open('src/item/hallow/transmit_down.png'))
-
-
-# frame = Frame(root)
-
-# Place buttons simply at the top
-# frame.grid(row=1,sticky=S+W+N+E)
-# controller.reset_button (frame,text="New Floor")     .pack(side=LEFT)
-# controller.save_button (frame,text="Save Floor")     .pack(side=LEFT)
-# controller.load_button (frame,text="Load Floor")     .pack(side=LEFT)
-# 
-# controller.next_button (frame,text="Next Floor")     .pack(side=LEFT)
-# controller.previous_button (frame,text="Previous Floor")     .pack(side=LEFT)
-# 
-# 
-# variable = StringVar(root)
-# variable.set("wall") # default value
-# 
-# w = OptionMenu(root, variable, 'bat','big_bat','big_slime','blue_blood','blue_door','blue_gem','blue_key','blue_wizard','dark_knight','downstairs','ghost_soldier','green_slime','iron_door','knight','lava','magic_guard','merchant','mid_soldier','pri_witch','pro_soldier','pro_witch','red_blood','red_door','red_gem','red_key','red_slime','red_wizard','rock','sage','skeleton','skeleton_soldier','slime_king','slime_man','soldier','swords_man','upstairs','vampire_bat','wall', 'yellow_door','yellow_key','zombie','zombie_soldier')
-# w.grid(row=2,columnspan=3)
+TRANSMIT_DOWN_ICON = ImageTk.PhotoImage(Image.open('src/item/hallow/transmit_down.png'))
