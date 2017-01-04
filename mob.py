@@ -59,5 +59,5 @@ class Mob(Character):
                     harm += self._attack - prot.get_value('defense')
             harm = max(harm, 0)
         else:
-            harm = 'N.A'
+            harm = None
         return harm

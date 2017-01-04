@@ -1,8 +1,8 @@
 '''Start the game, calling view(set the board)
 and controller (outside game control)'''
 
-import view
 import controller
+import view
 
 controller.repeater(view.WINDOW)
 

@@ -39,6 +39,10 @@ class Floor:
         self._active = value
 
     @property
+    def floor(self):
+        return self._floor
+
+    @property
     def num(self):
         return self._num
 

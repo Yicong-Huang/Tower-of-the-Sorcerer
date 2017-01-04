@@ -1,6 +1,6 @@
 '''controls the model to run the game'''
 
-from tkinter import Button, Canvas
+from tkinter import Canvas
 
 import model
 
