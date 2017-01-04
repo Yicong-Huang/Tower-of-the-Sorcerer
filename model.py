@@ -1,44 +1,51 @@
 '''The main model controled by the controller. Set the game to run, display, load and save'''
+
+
+from tkinter import messagebox
+
 import controller
-import view
-import ele_lib
 
-from floor import Floor
+from ele_lib import LIB, set_image
 from tower import Tower
-
-from enhancement import Enhancement
-from collection import Collection
-from character import Character
-from build import Build
 from hallow import Hallow
-from trigger import Trigger
-from protagonist import Protagonist
-from mob import Mob
 
-#return a 2-tuple of the width and height of the canvas (defined in the controller)
+exec('from enhancement import Enhancement')
+exec('from collection import Collection')
+exec('from character import Character')
+exec('from build import Build')
+exec('from trigger import Trigger')
+exec('from mob import Mob')
+
+T, PROT = Tower.load_tower('all_floors.flo')
+F = T.current
+CHECK = True
+
+
 def world():
     return (controller.THE_CANVAS.winfo_width(), controller.THE_CANVAS.winfo_height())
 
 def save():
-    T.save_tower(prot)
+    messagebox.showinfo('Tower of the Sorcerer', 'Saved!')
+    T.save_tower(PROT)
 
 def load():
-    "Loads the game, including tower and prot form save file"
-    global T, F, prot, MAIN
-    for hallow in prot.get_value('hallows'):
+    "Loads the game, including tower and PROT form save file"
+    global T, F, PROT, MAIN
+    messagebox.showinfo('Tower of the Sorcerer', 'Loaded!')
+    for hallow in PROT.get_value('hallows'):
         controller.THE_CANVAS.delete(hallow)
-    T, prot = Tower.load_tower('game1.sav')
+    T, PROT = Tower.load_tower('game1.sav')
 
     F = T.current
     display_all(controller.TICK)
 
-    for hallow in prot.get_value('hallows'):
+    for hallow in PROT.get_value('hallows'):
         hallow = Hallow(0, 0, hallow, F)
-        ele_lib.set_image(hallow)
-        hallow.interact(prot)
+        set_image(hallow)
+        hallow.interact(PROT)
 
 def show_info():
-    return Hallow(0, 0, 'info_book', None).clicked(prot, None)
+    return Hallow(0, 0, 'info_book', None).clicked(PROT, None)
 
 def next_floor():
     T.next_floor()
@@ -47,35 +54,32 @@ def previous_floor():
     T.previous_floor()
 
 def arrow_direction(direction):
-    prot.move(*{'left':(-1, 0), 'right':(1, 0), 'up':(0, -1), 'down':(0, 1)}[direction])
+    PROT.move(*{'left':(-1, 0), 'right':(1, 0), 'up':(0, -1), 'down':(0, 1)}[direction])
 
-T, prot = Tower.load_tower('all_floors.flo')
 
-CHECK = True
 def display_all(tick):
     "Display all game elements on the game board that needs to be updated"
-    global MAIN, CHECK
+    global MAIN, CHECK, F
     MAIN = controller.THE_CANVAS
-    floor = T.current
-
+    F = T.current
     CHECK = False
 
     MAIN.delete('redraw')
 
-    for (i, j), item in floor:
+    for (i, j), item in F:
         if isinstance(item, str):
-            item = eval(type(ele_lib.lib[item]).__name__+'(i, j, item, floor)')
-            floor.set_floor(i, j, item)
+            item = eval(type(LIB[item]).__name__+'(i, j, item, F)')
+            F.set_floor(i, j, item)
         item.display(MAIN, tick)
 
-    prot.display(MAIN, tick)
+    PROT.display(MAIN, tick)
 
-    MAIN.create_text(79, 87, text=prot.get_value('hp'), tag='redraw')
-    MAIN.create_text(79, 111, text=prot.get_value('attack'), tag='redraw')
-    MAIN.create_text(79, 135, text=prot.get_value('defense'), tag='redraw')
-    MAIN.create_text(79, 159, text=prot.get_value('gold'), tag='redraw')
-    MAIN.create_text(65, 57, text='Floor %s'% prot.get_value('floor._num'), tag='redraw')
+    MAIN.create_text(79, 87, text=PROT.get_value('hp'), tag='redraw')
+    MAIN.create_text(79, 111, text=PROT.get_value('attack'), tag='redraw')
+    MAIN.create_text(79, 135, text=PROT.get_value('defense'), tag='redraw')
+    MAIN.create_text(79, 159, text=PROT.get_value('gold'), tag='redraw')
+    MAIN.create_text(65, 57, text='Floor %s'% PROT.get_value('floor._num'), tag='redraw')
 
-    MAIN.create_text(560, 155, text='       *    %s'% prot.get_value('yellow_key'), tag='redraw')
-    MAIN.create_text(560, 175, text='       *    %s'% prot.get_value('blue_key'), tag='redraw')
-    MAIN.create_text(560, 195, text='       *    %s'% prot.get_value('red_key'), tag='redraw')
+    MAIN.create_text(560, 155, text='       *    %s'% PROT.get_value('yellow_key'), tag='redraw')
+    MAIN.create_text(560, 175, text='       *    %s'% PROT.get_value('blue_key'), tag='redraw')
+    MAIN.create_text(560, 195, text='       *    %s'% PROT.get_value('red_key'), tag='redraw')

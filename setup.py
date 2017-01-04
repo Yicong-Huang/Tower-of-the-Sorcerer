@@ -8,12 +8,12 @@ Usage:
 from setuptools import setup
 
 APP = ['script.py']
-DATA_FILES = ['all_floors.flo','src']
+DATA_FILES = ['all_floors.flo', 'src']
 OPTIONS = {'argv_emulation': True}
 
 setup(
-    app=APP,
-    data_files=DATA_FILES,
-    options={'py2app': OPTIONS},
-    setup_requires=['py2app'],
+    app=APP, 
+    data_files=DATA_FILES, 
+    options={'py2app': OPTIONS}, 
+    setup_requires=['py2app'], 
 )

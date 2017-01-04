@@ -3,12 +3,12 @@ from character import Character
 import ele_lib
 
 class Mob(Character):
-    '''A Mob interact with Protagonist. It first calcultes the harm and then
+    '''A Mob interacts with Protagonist. It first calcultes the harm and then
     fight with Protagonist. Its information is stored in ele_lib and will be
     displayed by Hallow info'''
     def __init__(self, i, j, name, floor):
         Character.__init__(self, i, j, name, floor)
-        values = ele_lib.lib[name]
+        values = ele_lib.LIB[name]
         self._attack = values.attack
         self._defense = values.defense
         self._hp = values.hp

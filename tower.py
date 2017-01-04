@@ -46,10 +46,10 @@ class Tower():
                 else:
                     tower = Tower(temp_tower)
                     tower.current = tower.tower[int(line.strip('\n').split('/')[6])]
-                    temp = zip(['i', 'j', 'hp', 'attack', 'defense', 'gold',
-                                'num', 'yellow_key', 'blue_key', 'red_key',
-                                'shop', 'cross', 'lucky_coin', 'magic_defense',
-                                'dragon_dagger', 'hallows'],
+                    temp = zip(['i', 'j', 'hp', 'attack', 'defense', 'gold', 
+                                'num', 'yellow_key', 'blue_key', 'red_key', 
+                                'shop', 'cross', 'lucky_coin', 'magic_defense', 
+                                'dragon_dagger', 'hallows'], 
                                line.strip('\n').split('/'))
                     prot = Protagonist('protagonist', tower, **dict([i for i in temp]))
             return tower, prot

@@ -2,7 +2,7 @@
 Defining class Display for all Objs to display on tkinter
 '''
 from obj import Obj
-from ele_lib import set_image, lib
+from ele_lib import set_image, LIB
 
 class Display(Obj):
     '''relating methods for Obj display'''
@@ -21,9 +21,9 @@ class Display(Obj):
         "displays the Obj on the game board"
 
         set_image(self)
-        self._image = lib[self._name].image[tick] \
-                        if isinstance(lib[self._name].image, tuple)\
-                        else lib[self._name].image
+        self._image = LIB[self._name].image[tick] \
+                        if isinstance(LIB[self._name].image, tuple)\
+                        else LIB[self._name].image
         self._tag = canvas.create_image(*self.get_location(),
                                         image=self._image, tag='redraw')
 
