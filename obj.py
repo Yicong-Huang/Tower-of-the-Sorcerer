@@ -1,6 +1,8 @@
 '''
 Defining the base class Obj for all classes
 '''
+
+
 class Obj:
     '''everything of the game is a Obj object.'''
     side = 32
@@ -17,13 +19,13 @@ class Obj:
         self._i, self._j = i, j
 
     def get_value(self, name):
-        return eval('self._'+name)
+        return eval('self._' + name)
 
     def set_value(self, name, value):
-        self.__dict__['_'+name] = value
+        self.__dict__['_' + name] = value
 
     def add_value(self, name, value):
-        exec('self._'+name+'+='+str(value))
+        exec('self._' + name + '+=' + str(value))
 
     def mul_value(self, name, value):
-        exec('self._'+name+'=round(self._'+name+'*'+str(value)+')')
+        exec('self._' + name + '=round(self._' + name + '*' + str(value) + ')')

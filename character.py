@@ -1,11 +1,14 @@
 '''Defining class Character, which Includes Mobs and NPCs(Character). Mobs will
 fight while NPCs will help the Protagonist.'''
 from tkinter import messagebox
+
 from display import Display
+
 
 class Character(Display):
     '''Character mainly contains the NPCs, who will talk and interact with the
     Protagoinst. The derived class Mob will rewrite the interact to fight'''
+
     def __init__(self, i, j, name, floor):
         Display.__init__(self, i, j, name, floor)
 
@@ -25,8 +28,6 @@ class Character(Display):
                     self.disappear()
                     prot.get_value('tower').tower[34].del_floor(3, 8)
                     prot.get_value('tower').tower[34].set_floor(4, 9, 'thief')
-
-
 
             elif num == 15:
                 messagebox.showinfo(title='thief', message='hello')
@@ -52,7 +53,7 @@ class Character(Display):
         elif self._name == 'merchant':
             if num == 2 and messagebox.askyesno(
                     'merchant',
-                    'Thank you for rescuring me! '+
+                    'Thank you for rescuring me! ' +
                     'I can add you 3% more both attack and defense, do you want it now?'):
                 prot.mul_value('attack', 1.03)
                 prot.mul_value('defense', 1.03)
@@ -94,18 +95,3 @@ class Character(Display):
                     prot.set_value('gold', -800)
                     prot.set_value('red_key', 1)
                     self.disappear()
-
-
-    #
-    # def move(self, di=0, dj=0):
-    #     for t in range(max(abs(di), abs(di))):
-    #         if self._tick:
-    #             self.disappear()
-    #             i, j = self.get_position()
-    #             print(i, j)
-    #             self.set_position(i+(di != 0), j+(dj != 0))
-    #             self._floor.set_floor(*self.get_position(), self._name)
-    #             self.display(self._canvas, self._tick)
-    #         else:
-    #             print('not ticking')
-    #         self._tick = not self._tick

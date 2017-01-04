@@ -3,9 +3,11 @@ Defining class Floor which contains all info for a single floor
 '''
 from build import Build
 
+
 class Floor:
     '''a floor is initally a dict of strings, when loaded, it is a dict of
     different types of Objs, could be Item or Character'''
+
     def __init__(self, n, *args):
         self._num = n
         self._floor = {}
@@ -25,8 +27,9 @@ class Floor:
     def get_item(self, name):
         for (i, j), item in self._floor.items():
             if (isinstance(item, str) and item == name) or \
-            (isinstance(item, Build) and item.get_name() == name):
+                    (isinstance(item, Build) and item.get_name() == name):
                 return i, j
+
     @property
     def active(self):
         return self._active
@@ -40,8 +43,8 @@ class Floor:
         return self._num
 
     def __str__(self):
-        return ''.join([str((point, item))if isinstance(item, str) \
-        else str((point, item.get_name())) for point, item in self._floor.items()])
+        return ''.join([str((point, item))if isinstance(item, str)
+                        else str((point, item.get_name())) for point, item in self._floor.items()])
 
     def __iter__(self):
         for point, item in self._floor.items():

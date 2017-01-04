@@ -4,10 +4,9 @@
 from tkinter import messagebox
 
 import controller
-
 from ele_lib import LIB, set_image
-from tower import Tower
 from hallow import Hallow
+from tower import Tower
 
 exec('from enhancement import Enhancement')
 exec('from collection import Collection')
@@ -24,9 +23,11 @@ CHECK = True
 def world():
     return (controller.THE_CANVAS.winfo_width(), controller.THE_CANVAS.winfo_height())
 
+
 def save():
     messagebox.showinfo('Tower of the Sorcerer', 'Saved!')
     T.save_tower(PROT)
+
 
 def load():
     "Loads the game, including tower and PROT form save file"
@@ -44,17 +45,22 @@ def load():
         set_image(hallow)
         hallow.interact(PROT)
 
+
 def show_info():
     return Hallow(0, 0, 'info_book', None).clicked(PROT, None)
+
 
 def next_floor():
     T.next_floor()
 
+
 def previous_floor():
     T.previous_floor()
 
+
 def arrow_direction(direction):
-    PROT.move(*{'left':(-1, 0), 'right':(1, 0), 'up':(0, -1), 'down':(0, 1)}[direction])
+    PROT.move(*{'left': (-1, 0), 'right': (1, 0),
+                'up': (0, -1), 'down': (0, 1)}[direction])
 
 
 def display_all(tick):
@@ -68,7 +74,7 @@ def display_all(tick):
 
     for (i, j), item in F:
         if isinstance(item, str):
-            item = eval(type(LIB[item]).__name__+'(i, j, item, F)')
+            item = eval(type(LIB[item]).__name__ + '(i, j, item, F)')
             F.set_floor(i, j, item)
         item.display(MAIN, tick)
 
@@ -78,8 +84,12 @@ def display_all(tick):
     MAIN.create_text(79, 111, text=PROT.get_value('attack'), tag='redraw')
     MAIN.create_text(79, 135, text=PROT.get_value('defense'), tag='redraw')
     MAIN.create_text(79, 159, text=PROT.get_value('gold'), tag='redraw')
-    MAIN.create_text(65, 57, text='Floor %s'% PROT.get_value('floor._num'), tag='redraw')
+    MAIN.create_text(65, 57, text='Floor %s' %
+                     PROT.get_value('floor._num'), tag='redraw')
 
-    MAIN.create_text(560, 155, text='       *    %s'% PROT.get_value('yellow_key'), tag='redraw')
-    MAIN.create_text(560, 175, text='       *    %s'% PROT.get_value('blue_key'), tag='redraw')
-    MAIN.create_text(560, 195, text='       *    %s'% PROT.get_value('red_key'), tag='redraw')
+    MAIN.create_text(560, 155, text='       *    %s' %
+                     PROT.get_value('yellow_key'), tag='redraw')
+    MAIN.create_text(560, 175, text='       *    %s' %
+                     PROT.get_value('blue_key'), tag='redraw')
+    MAIN.create_text(560, 195, text='       *    %s' %
+                     PROT.get_value('red_key'), tag='redraw')

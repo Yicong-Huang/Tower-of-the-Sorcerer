@@ -1,11 +1,13 @@
 '''Defining class Mob which can attack or be attacked by Protagonist'''
-from character import Character
 import ele_lib
+from character import Character
+
 
 class Mob(Character):
     '''A Mob interacts with Protagonist. It first calcultes the harm and then
     fight with Protagonist. Its information is stored in ele_lib and will be
     displayed by Hallow info'''
+
     def __init__(self, i, j, name, floor):
         Character.__init__(self, i, j, name, floor)
         values = ele_lib.LIB[name]
@@ -22,14 +24,15 @@ class Mob(Character):
         attack = ((prot.get_value('cross') and ('zombie' in self._name
                                                 or 'vampire'in self._name))
                   or(prot.get_value('dragon_dagger')
-                     and ('dragon' in self.get_value('name')))+1)\
-                       *prot.get_value('attack')
+                     and ('dragon' in self.get_value('name'))) + 1)\
+            * prot.get_value('attack')
         if attack > self.get_value('defense'):
             harm = self.calculate_harm(prot, attack_first)
             print(harm)
             if prot.get_value('hp') > harm:
                 prot.add_value('hp', -harm)
-                prot.add_value('gold', (prot.get_value('lucky_coin')+1) *self._gold)
+                prot.add_value('gold', (prot.get_value(
+                    'lucky_coin') + 1) * self._gold)
                 self.disappear()
                 prot.set_value('moved', True)
             else:
@@ -42,18 +45,18 @@ class Mob(Character):
         attack = ((prot.get_value('cross') and ('zombie' in self._name
                                                 or 'vampire'in self._name))
                   or(prot.get_value('dragon_dagger')
-                     and ('dragon' in self._name))+1)\
-                       *prot.get_value('attack')
+                     and ('dragon' in self._name)) + 1)\
+            * prot.get_value('attack')
         if attack_first:
-            hp = self._hp+prot.get_value('attack')
+            hp = self._hp + prot.get_value('attack')
         else:
             hp = self._hp
         if attack > self._defense:
             harm = 0
             while hp > 0:
-                hp -= attack-self._defense
+                hp -= attack - self._defense
                 if hp > 0:
-                    harm += self._attack-prot.get_value('defense')
+                    harm += self._attack - prot.get_value('defense')
             harm = max(harm, 0)
         else:
             harm = 'N.A'
