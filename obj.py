@@ -1,6 +1,4 @@
-'''
-Defining the base class Obj for all classes
-'''
+'''Defining the base class Obj for all classes'''
 
 
 class Obj:
