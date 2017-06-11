@@ -45,7 +45,7 @@ class Character(Display):
                 messagebox.showinfo(
                     title='sage',
                     message='Thank you for rescuring me! As a reward, please take the 1000 gold!')
-                prot._gold += 1000
+                prot.add_value("gold", 1000)
             elif num == 3:
                 self._floor.set_floor(10, 3, 'info_book')
                 messagebox.showinfo(title='sage', message='hello')

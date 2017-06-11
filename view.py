@@ -1,4 +1,4 @@
-'''Display the game board with Tkinter, setting frame and some image constants.'''
+"""Display the game board with Tkinter, setting frame and some image constants."""
 from tkinter import E, N, S, Tk, W
 
 from PIL import Image, ImageTk

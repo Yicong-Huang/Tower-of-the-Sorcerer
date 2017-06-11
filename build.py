@@ -18,7 +18,7 @@ class Build(Item):
             if entry:
                 prot.get_value('floor').set_floor(*entry[0], entry[1])
                 if prot.get_value('floor').num == 41 and not prot.get_value('magic_defense'):
-                    prot._hp -= 200
+                    prot.add_value("hp", -200)
             else:
                 super().interact(prot)
 

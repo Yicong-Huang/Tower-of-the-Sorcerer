@@ -1,4 +1,4 @@
-'''Defining class ShopDialog, InfoBox'''
+"""Defining class ShopDialog, InfoBox"""
 from tkinter import Button, IntVar, Label, Toplevel, messagebox
 
 from ele_lib import LIB

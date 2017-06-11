@@ -18,7 +18,7 @@ exec('from mob import Mob')
 T, PROT = Tower.load_tower('all_floors.flo')
 F = T.current
 CHECK = True
-
+MAIN = None
 
 def world():
     return (controller.THE_CANVAS.winfo_width(), controller.THE_CANVAS.winfo_height())

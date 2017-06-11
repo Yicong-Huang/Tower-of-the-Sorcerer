@@ -1,4 +1,4 @@
-'''Defining class Hallow and LIB that contains infomation about Hallows'''
+'''Defining class Hallow and LIB that contains information about Hallows'''
 import ele_lib
 import view
 from dialogs import Infobox
@@ -23,7 +23,7 @@ LIB = {'transmit': [(33, 200), (33, 216)],
 
 class Hallow(Item):
     '''Hallows are special items that will help Protagonist. Some Hallows have usage limitations.
-    Hallows can be collected and cliked on the left of the game frame.'''
+    Hallows can be collected and clicked on the left of the game frame.'''
 
     def __init__(self, i, j, name, floor):
         Item.__init__(self, i, j, name, floor)
@@ -45,7 +45,7 @@ class Hallow(Item):
             view.MAIN.create_text(75, 280, text='3')
 
     def clicked(self, prot, event):
-        "use the Hallow when clikced in the GUI"
+        "use the Hallow when clicked in the GUI"
         print('clicked')
         print(self._useable, self._name)
         if self._useable:
@@ -126,8 +126,8 @@ class Hallow(Item):
                             hp, attack, defense, gold =\
                                 prot.get_value('hp'), prot.get_value('attack'), prot.get_value(
                                     'defense'), prot.get_value('gold')
-                            prot._attack *= 1000
-                            prot._defense *= 1000
+                            prot.mul_value("attack", 1000)
+                            prot.mul_value("defense", 1000)
                             prot.move(i, j)
                             prot.move(-i, -j)
                             prot.set_value('hp', hp)

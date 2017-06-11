@@ -13,6 +13,8 @@ class Display(Obj):
         super().__init__(i, j)
         self._name = name
         self._floor = floor
+        self._x = 0
+        self._y = 0
 
     def get_location(self):
         "returns the position x, y of the Obj"

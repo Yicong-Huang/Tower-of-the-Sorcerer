@@ -9,7 +9,7 @@ Mob = namedtuple('Mob', 'name image hp attack defense gold')
 Character = namedtuple('Character', 'name image')
 Protagonist = namedtuple('Protagonist', 'name image hp attack defense gold')
 Build = namedtuple('Build', 'name image')
-Collection = namedtuple('Collection', 'name image')
+Collection = namedtuple("Collection", 'name image')
 Hallow = namedtuple('Hallow', 'name image')
 Trigger = namedtuple('Trigger', 'name case')
 
